@@ -13,7 +13,7 @@
 @interface KBOpenGLView2_0 (){
     CGSize sizeInPixels;
     EAGLContext *context;
-    GLuint displayRenderbuffer, displayFramebuffer;
+    GLuint displayRenderbuffer, displayFramebuffer,_depthRenderBuffer;
     
     GLProgram *displayProgram;
     GLProgram *lampShader;
@@ -149,9 +149,14 @@
     glGenFramebuffers(1, &displayFramebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, displayFramebuffer);
     
+    glGenRenderbuffers(1, &_depthRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBuffer);
+    
     glGenRenderbuffers(1, &displayRenderbuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, displayRenderbuffer);
     
+    
+
     [context renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer*)self.layer];
     GLint backingWidth, backingHeight;
     
@@ -164,10 +169,22 @@
         [self destroyDisplayFramebuffer];
         return;
     }
+    
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, sizeInPixels.width, sizeInPixels.height);
+    
+    
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, displayRenderbuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
+
+    
+
     
     __unused GLuint framebufferCreationStatus = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     NSAssert(framebufferCreationStatus == GL_FRAMEBUFFER_COMPLETE, @"Failure with display framebuffer generation for display of size: %f, %f", self.bounds.size.width, self.bounds.size.height);
+    
+    
+    
+
     
 }
 
@@ -185,6 +202,12 @@
     {
         glDeleteRenderbuffers(1, &displayRenderbuffer);
         displayRenderbuffer = 0;
+    }
+    
+    if (_depthRenderBuffer)
+    {
+        glDeleteRenderbuffers(1, &_depthRenderBuffer);
+        _depthRenderBuffer = 0;
     }
 }
 
@@ -210,7 +233,7 @@
     
     [self loadCube];
     glEnable(GL_DEPTH_TEST);
-
+    glDepthFunc(GL_LESS);
 }
 
 -(void)loadCube{
