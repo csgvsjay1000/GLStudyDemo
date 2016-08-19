@@ -9,11 +9,11 @@
 #import "ViewController.h"
 //#import "KBOpenglView.h"
 //#import "KBOpenGLView1_0.h"
-#import "KBOpenGLView2_0.h"
+#import "KBOpenGLView3_0.h"
 
 @interface ViewController (){
 //    KBOpenglView *glView;
-    KBOpenGLView2_0 *glView;
+    KBOpenGLView3_0 *glView;
 
     CADisplayLink *displayLink;
 
@@ -31,7 +31,7 @@
     [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     displayLink.paused = YES;
     displayLink.frameInterval = 2;
-    glView = [[KBOpenGLView2_0 alloc] initWithFrame:CGRectZero];
+    glView = [[KBOpenGLView3_0 alloc] initWithFrame:CGRectZero];
     [self.view addSubview:glView];
     
 }
@@ -47,8 +47,10 @@
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
     
+//    glView.frame = CGRectMake(0, 0, 400, 300);
+
     glView.frame = CGRectMake(0, 0, width, height);
-    
+
     [glView refreshFrame];
     
     displayLink.paused = NO;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C00106E1D66EBF300A58505 /* KBOpenGLView3_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C00106D1D66EBF300A58505 /* KBOpenGLView3_0.m */; };
+		4C0010701D66EC1B00A58505 /* lighting3_0.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C00106F1D66EC1B00A58505 /* lighting3_0.fsh */; };
+		4C0010721D66F2CF00A58505 /* lighting3_0.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C0010711D66F2CF00A58505 /* lighting3_0.vsh */; };
 		4C867CA41D6590E700A1F676 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C867CA31D6590E700A1F676 /* main.m */; };
 		4C867CA71D6590E700A1F676 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C867CA61D6590E700A1F676 /* AppDelegate.m */; };
 		4C867CAA1D6590E700A1F676 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C867CA91D6590E700A1F676 /* ViewController.m */; };
@@ -47,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C00106C1D66EBF300A58505 /* KBOpenGLView3_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOpenGLView3_0.h; sourceTree = "<group>"; };
+		4C00106D1D66EBF300A58505 /* KBOpenGLView3_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOpenGLView3_0.m; sourceTree = "<group>"; };
+		4C00106F1D66EC1B00A58505 /* lighting3_0.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = lighting3_0.fsh; sourceTree = "<group>"; };
+		4C0010711D66F2CF00A58505 /* lighting3_0.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting3_0.vsh; sourceTree = "<group>"; };
 		4C867C9F1D6590E700A1F676 /* GLStudyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLStudyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C867CA31D6590E700A1F676 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C867CA51D6590E700A1F676 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -106,6 +113,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C00106B1D66EBAF00A58505 /* material_01 */ = {
+			isa = PBXGroup;
+			children = (
+				4C00106C1D66EBF300A58505 /* KBOpenGLView3_0.h */,
+				4C00106D1D66EBF300A58505 /* KBOpenGLView3_0.m */,
+				4C00106F1D66EC1B00A58505 /* lighting3_0.fsh */,
+				4C0010711D66F2CF00A58505 /* lighting3_0.vsh */,
+			);
+			path = material_01;
+			sourceTree = "<group>";
+		};
 		4C867C961D6590E600A1F676 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +151,7 @@
 				4C867CA61D6590E700A1F676 /* AppDelegate.m */,
 				4C867CA81D6590E700A1F676 /* ViewController.h */,
 				4C867CA91D6590E700A1F676 /* ViewController.m */,
+				4C00106B1D66EBAF00A58505 /* material_01 */,
 				4C867CEE1D65BCCC00A1F676 /* light_02 */,
 				4C867CEA1D65A87500A1F676 /* light_01 */,
 				4C867CD71D6592AB00A1F676 /* color_01 */,
@@ -320,7 +339,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C867CE31D6597FF00A1F676 /* lighting.vsh in Resources */,
+				4C0010701D66EC1B00A58505 /* lighting3_0.fsh in Resources */,
 				4C867CE71D659D9B00A1F676 /* lamp.vsh in Resources */,
+				4C0010721D66F2CF00A58505 /* lighting3_0.vsh in Resources */,
 				4C867CDD1D6592C700A1F676 /* Frag3_0.fsh in Resources */,
 				4C867CB21D6590E700A1F676 /* LaunchScreen.storyboard in Resources */,
 				4C867CAF1D6590E700A1F676 /* Assets.xcassets in Resources */,
@@ -357,6 +378,7 @@
 				4C867CAA1D6590E700A1F676 /* ViewController.m in Sources */,
 				4C867CF11D65BCDD00A1F676 /* KBOpenGLView2_0.m in Sources */,
 				4C867CED1D65A94700A1F676 /* KBOpenGLView1_0.m in Sources */,
+				4C00106E1D66EBF300A58505 /* KBOpenGLView3_0.m in Sources */,
 				4C867CDA1D6592B700A1F676 /* GLProgram.m in Sources */,
 				4C867CA71D6590E700A1F676 /* AppDelegate.m in Sources */,
 				4C867CE11D65932B00A1F676 /* KBOpenglView.m in Sources */,
@@ -586,6 +608,7 @@
 				4C867CCE1D6590E700A1F676 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C867CCF1D6590E700A1F676 /* Build configuration list for PBXNativeTarget "GLStudyDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -594,6 +617,7 @@
 				4C867CD11D6590E700A1F676 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C867CD21D6590E700A1F676 /* Build configuration list for PBXNativeTarget "GLStudyDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -602,6 +626,7 @@
 				4C867CD41D6590E700A1F676 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
