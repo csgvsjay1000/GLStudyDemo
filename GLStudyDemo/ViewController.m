@@ -8,16 +8,17 @@
 
 #import "ViewController.h"
 //#import "KBOpenglView.h"
-//#import "KBOpenGLView1_0.h"
-#import "KBOpenGLView3_0.h"
+#import "KBOpenGLView2_0.h"
+//#import "KBOpenGLView4_0.h"
 
 @interface ViewController (){
 //    KBOpenglView *glView;
-    KBOpenGLView3_0 *glView;
+    KBOpenGLView2_0 *glView;
 
     CADisplayLink *displayLink;
 
 }
+@property (weak, nonatomic) IBOutlet UIView *leftView;
 
 @end
 
@@ -31,8 +32,10 @@
     [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     displayLink.paused = YES;
     displayLink.frameInterval = 2;
-    glView = [[KBOpenGLView3_0 alloc] initWithFrame:CGRectZero];
+    glView = [[KBOpenGLView2_0 alloc] initWithFrame:CGRectZero];
     [self.view addSubview:glView];
+    
+    [self.view bringSubviewToFront:self.leftView];
     
 }
 
@@ -61,6 +64,21 @@
 -(void)displayLinkPresent{
     [glView render];
     
+}
+- (IBAction)upActions:(id)sender {
+    [glView upActions];
+}
+- (IBAction)downActions:(id)sender {
+    [glView downActions];
+
+}
+- (IBAction)leftActions:(id)sender {
+    [glView leftActions];
+
+}
+- (IBAction)rightActions:(id)sender {
+    [glView rightActions];
+
 }
 
 

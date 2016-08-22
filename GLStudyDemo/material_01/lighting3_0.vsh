@@ -2,6 +2,7 @@ attribute vec3 position;
 attribute vec3 normalLocal;
 attribute vec2 texCoords;
 
+
 varying vec3 Normal;
 varying vec3 FragPos;
 varying vec3 TexCoords;

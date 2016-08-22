@@ -233,4 +233,62 @@ typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length,
        
 }
 // END:dealloc
+
+
+
++(GLuint)rendImage:(UIImage *)image{
+    GLuint texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    //    glActiveTexture(GL_TEXTURE0);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT (usually basic wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    
+    void *bitmapData;
+    size_t pixelsWide;
+    size_t pixelsHigh;
+    [[self class] loadImageWithName:image bitmapData_p:&bitmapData pixelsWide:&pixelsWide pixelsHigh:&pixelsHigh];
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (int)pixelsWide, (int)pixelsHigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, bitmapData);
+    free(bitmapData);
+    bitmapData = NULL;
+    glBindTexture(GL_TEXTURE_2D, 0);
+    return texture;
+}
+
+#pragma mark - private methods
++(void)loadImageWithName:(UIImage *)image1 bitmapData_p:(void **)bitmapData pixelsWide:(size_t *)pixelsWide_p pixelsHigh:(size_t *)pixelsHigh_p{
+    UIImage *image = image1;
+    
+    CGImageRef cgimg = image.CGImage;
+    
+    CGContextRef bitmapContext = NULL;
+    size_t pixelsWide;
+    size_t pixelsHigh;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    pixelsWide = CGImageGetWidth(cgimg);
+    pixelsHigh = CGImageGetHeight(cgimg);
+    
+    CGSize pixelSizeToUseForTexture;
+    CGFloat powerClosestToWidth = ceil(log2(pixelsWide));
+    CGFloat powerClosestToHeight = ceil(log2(pixelsHigh));
+    
+    pixelSizeToUseForTexture = CGSizeMake(pow(2.0, powerClosestToWidth), pow(2.0, powerClosestToHeight));
+    pixelsWide = pixelSizeToUseForTexture.width;
+    pixelsHigh = pixelSizeToUseForTexture.height;
+    
+    size_t bitsPerComponent_t = CGImageGetBitsPerComponent(cgimg);
+    *bitmapData = malloc(pixelsWide*pixelsHigh*4);
+    bitmapContext = CGBitmapContextCreate(*bitmapData, pixelsWide, pixelsHigh, bitsPerComponent_t, pixelsWide*4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGContextDrawImage(bitmapContext, CGRectMake(0, 0, pixelsWide, pixelsHigh), cgimg);
+    
+    CGContextRelease(bitmapContext);
+    
+    *pixelsHigh_p = pixelsHigh;
+    *pixelsWide_p = pixelsWide;
+}
+
+
 @end

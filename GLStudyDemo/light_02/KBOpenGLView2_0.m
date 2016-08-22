@@ -9,6 +9,8 @@
 #import "KBOpenGLView2_0.h"
 #import <GLKit/GLKit.h>
 #import "GLProgram.h"
+//#import "cube.h"
+#import "banana.h"
 
 @interface KBOpenGLView2_0 (){
     CGSize sizeInPixels;
@@ -20,6 +22,12 @@
     
     GLuint VBO, VAO, EBO;
     GLuint VBO_1, VAO_1, EBO_1;
+    GLuint texture;
+    GLKVector3 cameraPos;
+    GLKVector3 cameraFront;
+    GLKVector3 cameraUp;
+    GLfloat cameraSpeed;
+
 }
 
 @end
@@ -35,6 +43,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupGL];
+        cameraPos = GLKVector3Make(0, 0, 3);
+        cameraFront = GLKVector3Make(0, 0, -1);
+        cameraUp = GLKVector3Make(0.0f, 1.0f,  0.0f);
+        cameraSpeed = 0.05f;
+
     }
     return self;
 }
@@ -58,28 +71,46 @@
 
     [self drawObjects];
     
-    [self drawLights];
+//    [self drawLights];
     
     [self presentFramebuffer];
 }
+
+-(void)upActions{
+    cameraPos = GLKVector3Add(cameraPos, GLKVector3MultiplyScalar(cameraFront, cameraSpeed));
+}
+-(void)downActions{
+    cameraPos = GLKVector3Subtract(cameraPos, GLKVector3MultiplyScalar(cameraFront, cameraSpeed));
+    
+}
+-(void)leftActions{
+    cameraPos = GLKVector3Subtract(cameraPos, GLKVector3MultiplyScalar(GLKVector3Normalize(GLKVector3CrossProduct(cameraFront, cameraUp)),cameraSpeed));
+}
+-(void)rightActions{
+    cameraPos = GLKVector3Add(cameraPos, GLKVector3MultiplyScalar(GLKVector3Normalize(GLKVector3CrossProduct(cameraFront, cameraUp)),cameraSpeed));
+}
+
 
 #pragma mark - drawObjects
 -(void)drawObjects{
     
     [displayProgram use];
-    GLfloat currentFrame  = [NSDate timeIntervalSinceReferenceDate];
+
+    GLfloat radius = 5.0f;
+
+    NSTimeInterval time = [NSDate timeIntervalSinceReferenceDate];
+    GLfloat camX = sin(time) * radius;
+    GLfloat camZ = cos(time) * radius;
+    GLKVector3 lightPos = GLKVector3Make(camX, 0, camZ);
+
     
-    GLKVector3 lightPos;
-    lightPos.x = 1.0f + sin(currentFrame) * 2.0f;
-    lightPos.y = sin(currentFrame / 2.0f) * 1.0f;
-    lightPos.z = -1;
-    glUniform3f([displayProgram uniformIndex:@"objectColor"], 1.0, 0.5, 0.31);  //珊瑚红
+//    glUniform3f([displayProgram uniformIndex:@"objectColor"], 1.0, 0.5, 0.31);  //珊瑚红
     glUniform3f([displayProgram uniformIndex:@"lightColor"], 1.0, 1.0, 1.0);  //白色
     glUniform3fv([displayProgram uniformIndex:@"lightPos"],1, lightPos.v);  // 光源位置  // x 和 y  位置是反的
     
     
     
-    glUniform3f([displayProgram uniformIndex:@"viewPos"], -0.5, -0.5, 2);  // 观察者位置  // x 和 y  位置是反的
+    glUniform3fv([displayProgram uniformIndex:@"viewPos"],1, cameraPos.v);  // 观察者位置  // x 和 y  位置是反的
     
 
 
@@ -88,26 +119,21 @@
     
     GLKMatrix4 projection = GLKMatrix4Identity;
     projection = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45), sizeInPixels.width/sizeInPixels.height, 0.1, 100);
+    GLKVector3 target = GLKVector3Add(cameraPos, cameraFront);
     
-    GLKVector3 cameraPos = GLKVector3Make(1, 1, -3);
-    GLKVector3 cameraFront = GLKVector3Make(-1, -1, 3);
-    
-    GLKVector3 temp = GLKVector3Make(0, 3, 1);
-    
-    GLKVector3 cameraUp = GLKVector3CrossProduct(temp, cameraFront);
-    
-    GLKVector3 cameraTarget = GLKVector3Add(cameraPos, cameraFront);
-    
-    
-    viewM = GLKMatrix4MakeLookAt(cameraPos.x, cameraPos.y, cameraPos.z, cameraTarget.x, cameraTarget.y, cameraTarget.z, cameraUp.x, cameraUp.y, cameraUp.z);
+    viewM = GLKMatrix4MakeLookAt(cameraPos.x,cameraPos.y,cameraPos.z, target.x, target.y, target.z, cameraUp.x, cameraUp.y, cameraUp.z);
     
     
     glUniformMatrix4fv([displayProgram uniformIndex:@"model"], 1, GL_FALSE, model.m);
     glUniformMatrix4fv([displayProgram uniformIndex:@"view"], 1, GL_FALSE, viewM.m);
     glUniformMatrix4fv([displayProgram uniformIndex:@"projection"], 1, GL_FALSE, projection.m);
     
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glUniform1i([displayProgram uniformIndex:@"inputImageTexture"], 0);
+    
     glBindVertexArrayOES(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDrawArrays(GL_TRIANGLES, 0, bananaNumVerts);
     glBindVertexArrayOES(0);
 }
 
@@ -239,83 +265,104 @@
     [self loadLampShader];
     
     [self loadCube];
+    [self loadTexture];
+
 //    glDepthFunc(GL_LESS);
 }
 
 -(void)loadCube{
-    GLfloat vertices[] = {
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-        0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-        
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-        
-        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-        0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-        0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-        0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-        0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-        
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-        0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-        
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-        0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
-    };
+//    GLfloat vertices[] = {
+//        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//        0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//        0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//        0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//        
+//        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//        0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//        0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//        0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//        
+//        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+//        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+//        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+//        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+//        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+//        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+//        
+//        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+//        0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+//        0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+//        0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+//        0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+//        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+//        
+//        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+//        0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+//        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+//        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+//        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+//        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+//        
+//        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+//        0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+//        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+//        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+//        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+//        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+//    };
     
     glGenVertexArraysOES (1, &VAO);
     glGenBuffers(1, &VBO);
     
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(bananaVerts), bananaVerts, GL_STATIC_DRAW);
     
     glBindVertexArrayOES(VAO);
-    glVertexAttribPointer([displayProgram attributeIndex:@"position"], 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
+    glVertexAttribPointer([displayProgram attributeIndex:@"position"], 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray([displayProgram attributeIndex:@"position"]);
     
-    glVertexAttribPointer([displayProgram attributeIndex:@"normalLocal"], 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3*sizeof(GLfloat)));
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    GLuint VBO_2;
+    glGenBuffers(1, &VBO_2);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO_2);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(bananaNormals), bananaNormals, GL_STATIC_DRAW);
+
+    glVertexAttribPointer([displayProgram attributeIndex:@"normalLocal"], 3, GL_FLOAT, GL_FALSE, 0 * sizeof(GLfloat), (GLvoid*)(0*sizeof(GLfloat)));
     glEnableVertexAttribArray([displayProgram attributeIndex:@"normalLocal"]);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    
+    GLuint VBO_3;
+    glGenBuffers(1, &VBO_3);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO_3);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(bananaTexCoords), bananaTexCoords, GL_STATIC_DRAW);
+    glVertexAttribPointer([displayProgram attributeIndex:@"inputTextureCoordinate"], 2, GL_FLOAT, GL_FALSE, 0 * sizeof(GLfloat), (GLvoid*)(0*sizeof(GLfloat)));
+    glEnableVertexAttribArray([displayProgram attributeIndex:@"inputTextureCoordinate"]);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
     glBindVertexArrayOES(0);
     
     
     
-    glGenVertexArraysOES (1, &VAO_1);
-    glGenBuffers(1, &VBO_1);
-    
-    glBindBuffer(GL_ARRAY_BUFFER, VBO_1);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    
-    glBindVertexArrayOES(VAO_1);
-    glVertexAttribPointer([lampShader attributeIndex:@"position"], 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray([lampShader attributeIndex:@"position"]);
-    glBindVertexArrayOES(0);
+//    glGenVertexArraysOES (1, &VAO_1);
+//    glGenBuffers(1, &VBO_1);
+//    
+//    glBindBuffer(GL_ARRAY_BUFFER, VBO_1);
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+//    
+//    glBindVertexArrayOES(VAO_1);
+//    glVertexAttribPointer([lampShader attributeIndex:@"position"], 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
+//    glEnableVertexAttribArray([lampShader attributeIndex:@"position"]);
+//    glBindVertexArrayOES(0);
     
     
 }
+
+
 
 -(void)loadLightingShader{
     displayProgram = [[GLProgram alloc] initWithVertexShaderFilename:@"lighting2_0" fragmentShaderFilename:@"lighting2_0"];
@@ -324,6 +371,8 @@
     {
         [displayProgram addAttribute:@"position"];
         [displayProgram addAttribute:@"normalLocal"];
+        [displayProgram addAttribute:@"inputTextureCoordinate"];
+
 
         if (![displayProgram link])
         {
@@ -358,6 +407,10 @@
             NSAssert(NO, @"Filter shader link failed");
         }
     }
+}
+
+-(void)loadTexture{
+    texture = [GLProgram rendImage:[UIImage imageNamed:@"banana.jpg"]];
 }
 
 

@@ -23,6 +23,10 @@
     GLuint VBO, VAO, EBO;
     GLuint VBO_1, VAO_1, EBO_1;
     
+    GLKVector3 cameraPos;
+    GLKVector3 cameraFront;
+    GLKVector3 cameraUp;
+    
 }
 
 @end
@@ -38,6 +42,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupGL];
+        cameraPos = GLKVector3Make(0, 0, 3);
+        cameraFront = GLKVector3Make(0, 0, -1);
+        cameraUp = GLKVector3Make(0.0f, 1.0f,  0.0f);
     }
     return self;
 }
@@ -78,17 +85,9 @@
     GLKMatrix4 projection = GLKMatrix4Identity;
     projection = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45), sizeInPixels.width/sizeInPixels.height, 0.1, 100);
     
-    GLKVector3 cameraPos = GLKVector3Make(1, 1, -3);
-    GLKVector3 cameraFront = GLKVector3Make(-1, -1, 3);
+    GLKVector3 target = GLKVector3Add(cameraPos, cameraFront);
     
-    GLKVector3 temp = GLKVector3Make(0, 3, 1);
-    
-    GLKVector3 cameraUp = GLKVector3CrossProduct(temp, cameraFront);
-    
-    GLKVector3 cameraTarget = GLKVector3Add(cameraPos, cameraFront);
-    
-    
-    viewM = GLKMatrix4MakeLookAt(cameraPos.x, cameraPos.y, cameraPos.z, cameraTarget.x, cameraTarget.y, cameraTarget.z, cameraUp.x, cameraUp.y, cameraUp.z);
+    viewM = GLKMatrix4MakeLookAt(cameraPos.x,cameraPos.y,cameraPos.z, target.x, target.y, target.z, cameraUp.x, cameraUp.y, cameraUp.z);
     
     
     glUniformMatrix4fv([displayProgram uniformIndex:@"model"], 1, GL_FALSE, model.m);

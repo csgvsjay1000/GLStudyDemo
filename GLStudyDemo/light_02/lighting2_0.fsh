@@ -1,3 +1,4 @@
+varying highp vec2 textureCoordinate;
 
 varying highp vec3 Normal;
 varying highp vec3 FragPos;
@@ -8,6 +9,7 @@ uniform highp vec3 viewPos;
 uniform highp vec3 objectColor;
 uniform highp vec3 lightColor;
 
+uniform sampler2D inputImageTexture;
 
 
 void main()
@@ -34,5 +36,7 @@ void main()
     
     highp vec3 result = (ambient + diffuse + specular) * objectColor;
     
-    gl_FragColor = vec4(result,1.0);
+//    texture2D(inputImageTexture, textureCoordinate)
+    
+    gl_FragColor = vec4(result,1.0)+texture2D(inputImageTexture, textureCoordinate);
 }

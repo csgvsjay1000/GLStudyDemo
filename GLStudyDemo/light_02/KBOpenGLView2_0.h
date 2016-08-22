@@ -14,4 +14,9 @@
 
 -(void)render;
 
+-(void)upActions;
+-(void)downActions;
+-(void)leftActions;
+-(void)rightActions;
+
 @end

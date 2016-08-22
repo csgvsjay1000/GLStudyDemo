@@ -13,6 +13,8 @@
 #import <OpenGL/gl.h>
 #endif
 
+#import <UIKit/UIKit.h>
+
 @interface GLProgram : NSObject 
 {
     NSMutableArray  *attributes;
@@ -39,4 +41,10 @@
 - (BOOL)link;
 - (void)use;
 - (void)validate;
+
+
++(GLuint)loadProgram:(NSString *)vertexShaderFilepath withFragmentShaderFilepath:(NSString *)fragmentShaderFilepath;
+
++(GLuint)rendImage:(UIImage *)image;
+
 @end
