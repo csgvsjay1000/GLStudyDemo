@@ -47,4 +47,6 @@
 
 +(GLuint)rendImage:(UIImage *)image;
 
++(void)loadImageWithName:(UIImage *)image1 bitmapData_p:(void **)bitmapData pixelsWide:(size_t *)pixelsWide_p pixelsHigh:(size_t *)pixelsHigh_p;
+
 @end

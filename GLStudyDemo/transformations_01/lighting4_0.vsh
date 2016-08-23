@@ -2,6 +2,7 @@ attribute vec3 position;
 attribute vec2 inputTextureCoordinate;
 
 varying vec2 textureCoordinate;
+varying vec3 FragPos;
 
 uniform highp mat4 transform;
 uniform highp mat4 model;

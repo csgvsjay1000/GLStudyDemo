@@ -15,6 +15,18 @@
 		4C6DD8FC1D6AA6A7001E6F8D /* lighting4_0.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C6DD8FB1D6AA6A7001E6F8D /* lighting4_0.fsh */; };
 		4C6DD8FE1D6AACCC001E6F8D /* 1234.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C6DD8FD1D6AACCC001E6F8D /* 1234.jpg */; };
 		4C6DD9031D6B0AA3001E6F8D /* banana.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C6DD9021D6B0AA3001E6F8D /* banana.jpg */; };
+		4C82FC781D6BE62100C7F243 /* KBOpenGLView5_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C82FC771D6BE62100C7F243 /* KBOpenGLView5_0.m */; };
+		4C82FC7A1D6BE64800C7F243 /* lighting5_0.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC791D6BE64800C7F243 /* lighting5_0.vsh */; };
+		4C82FC7C1D6BE65300C7F243 /* lighting5_0.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC7B1D6BE65300C7F243 /* lighting5_0.fsh */; };
+		4C82FC821D6BF7DC00C7F243 /* KBOpenGLView6_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C82FC811D6BF7DC00C7F243 /* KBOpenGLView6_0.m */; };
+		4C82FC851D6BFC1D00C7F243 /* lighting6_0.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC831D6BFC1D00C7F243 /* lighting6_0.fsh */; };
+		4C82FC861D6BFC1D00C7F243 /* lighting6_0.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC841D6BFC1D00C7F243 /* lighting6_0.vsh */; };
+		4C82FC8D1D6C178900C7F243 /* bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC871D6C178900C7F243 /* bottom.jpg */; };
+		4C82FC8E1D6C178900C7F243 /* left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC881D6C178900C7F243 /* left.jpg */; };
+		4C82FC8F1D6C178900C7F243 /* right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC891D6C178900C7F243 /* right.jpg */; };
+		4C82FC901D6C178900C7F243 /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC8A1D6C178900C7F243 /* top.jpg */; };
+		4C82FC911D6C178900C7F243 /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC8B1D6C178900C7F243 /* back.jpg */; };
+		4C82FC921D6C178900C7F243 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C82FC8C1D6C178900C7F243 /* front.jpg */; };
 		4C867CA41D6590E700A1F676 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C867CA31D6590E700A1F676 /* main.m */; };
 		4C867CA71D6590E700A1F676 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C867CA61D6590E700A1F676 /* AppDelegate.m */; };
 		4C867CAA1D6590E700A1F676 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C867CA91D6590E700A1F676 /* ViewController.m */; };
@@ -67,6 +79,22 @@
 		4C6DD9001D6B045D001E6F8D /* cube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cube.h; sourceTree = "<group>"; };
 		4C6DD9011D6B0734001E6F8D /* banana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = banana.h; sourceTree = "<group>"; };
 		4C6DD9021D6B0AA3001E6F8D /* banana.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banana.jpg; sourceTree = "<group>"; };
+		4C82FC761D6BE62100C7F243 /* KBOpenGLView5_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOpenGLView5_0.h; sourceTree = "<group>"; };
+		4C82FC771D6BE62100C7F243 /* KBOpenGLView5_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOpenGLView5_0.m; sourceTree = "<group>"; };
+		4C82FC791D6BE64800C7F243 /* lighting5_0.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = lighting5_0.vsh; sourceTree = "<group>"; };
+		4C82FC7B1D6BE65300C7F243 /* lighting5_0.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = lighting5_0.fsh; sourceTree = "<group>"; };
+		4C82FC7D1D6BE70E00C7F243 /* KBOpenGLViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOpenGLViewDelegate.h; sourceTree = "<group>"; };
+		4C82FC7E1D6BEA3200C7F243 /* WaltHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaltHead.h; sourceTree = "<group>"; };
+		4C82FC801D6BF7DC00C7F243 /* KBOpenGLView6_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOpenGLView6_0.h; sourceTree = "<group>"; };
+		4C82FC811D6BF7DC00C7F243 /* KBOpenGLView6_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOpenGLView6_0.m; sourceTree = "<group>"; };
+		4C82FC831D6BFC1D00C7F243 /* lighting6_0.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting6_0.fsh; sourceTree = "<group>"; };
+		4C82FC841D6BFC1D00C7F243 /* lighting6_0.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting6_0.vsh; sourceTree = "<group>"; };
+		4C82FC871D6C178900C7F243 /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
+		4C82FC881D6C178900C7F243 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
+		4C82FC891D6C178900C7F243 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
+		4C82FC8A1D6C178900C7F243 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
+		4C82FC8B1D6C178900C7F243 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		4C82FC8C1D6C178900C7F243 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
 		4C867C9F1D6590E700A1F676 /* GLStudyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLStudyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C867CA31D6590E700A1F676 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C867CA51D6590E700A1F676 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -151,8 +179,25 @@
 		4C6DD8FF1D6B0411001E6F8D /* model_01 */ = {
 			isa = PBXGroup;
 			children = (
+				4C82FC7E1D6BEA3200C7F243 /* WaltHead.h */,
+				4C82FC761D6BE62100C7F243 /* KBOpenGLView5_0.h */,
+				4C82FC771D6BE62100C7F243 /* KBOpenGLView5_0.m */,
+				4C82FC791D6BE64800C7F243 /* lighting5_0.vsh */,
+				4C82FC7B1D6BE65300C7F243 /* lighting5_0.fsh */,
+				4C82FC7D1D6BE70E00C7F243 /* KBOpenGLViewDelegate.h */,
 			);
 			path = model_01;
+			sourceTree = "<group>";
+		};
+		4C82FC7F1D6BF79E00C7F243 /* skybox_01 */ = {
+			isa = PBXGroup;
+			children = (
+				4C82FC801D6BF7DC00C7F243 /* KBOpenGLView6_0.h */,
+				4C82FC811D6BF7DC00C7F243 /* KBOpenGLView6_0.m */,
+				4C82FC831D6BFC1D00C7F243 /* lighting6_0.fsh */,
+				4C82FC841D6BFC1D00C7F243 /* lighting6_0.vsh */,
+			);
+			path = skybox_01;
 			sourceTree = "<group>";
 		};
 		4C867C961D6590E600A1F676 = {
@@ -182,6 +227,7 @@
 				4C867CA61D6590E700A1F676 /* AppDelegate.m */,
 				4C867CA81D6590E700A1F676 /* ViewController.h */,
 				4C867CA91D6590E700A1F676 /* ViewController.m */,
+				4C82FC7F1D6BF79E00C7F243 /* skybox_01 */,
 				4C6DD8FF1D6B0411001E6F8D /* model_01 */,
 				4C6DD8F51D6AA54E001E6F8D /* transformations_01 */,
 				4C00106B1D66EBAF00A58505 /* material_01 */,
@@ -201,6 +247,12 @@
 		4C867CA21D6590E700A1F676 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C82FC871D6C178900C7F243 /* bottom.jpg */,
+				4C82FC881D6C178900C7F243 /* left.jpg */,
+				4C82FC891D6C178900C7F243 /* right.jpg */,
+				4C82FC8A1D6C178900C7F243 /* top.jpg */,
+				4C82FC8B1D6C178900C7F243 /* back.jpg */,
+				4C82FC8C1D6C178900C7F243 /* front.jpg */,
 				4C6DD8FD1D6AACCC001E6F8D /* 1234.jpg */,
 				4C867CA31D6590E700A1F676 /* main.m */,
 			);
@@ -377,20 +429,30 @@
 			files = (
 				4C867CE31D6597FF00A1F676 /* lighting.vsh in Resources */,
 				4C6DD8FE1D6AACCC001E6F8D /* 1234.jpg in Resources */,
+				4C82FC7A1D6BE64800C7F243 /* lighting5_0.vsh in Resources */,
 				4C0010701D66EC1B00A58505 /* lighting3_0.fsh in Resources */,
+				4C82FC911D6C178900C7F243 /* back.jpg in Resources */,
 				4C867CE71D659D9B00A1F676 /* lamp.vsh in Resources */,
 				4C6DD8FC1D6AA6A7001E6F8D /* lighting4_0.fsh in Resources */,
+				4C82FC8F1D6C178900C7F243 /* right.jpg in Resources */,
 				4C0010721D66F2CF00A58505 /* lighting3_0.vsh in Resources */,
 				4C867CDD1D6592C700A1F676 /* Frag3_0.fsh in Resources */,
+				4C82FC851D6BFC1D00C7F243 /* lighting6_0.fsh in Resources */,
 				4C6DD9031D6B0AA3001E6F8D /* banana.jpg in Resources */,
 				4C867CB21D6590E700A1F676 /* LaunchScreen.storyboard in Resources */,
+				4C82FC7C1D6BE65300C7F243 /* lighting5_0.fsh in Resources */,
 				4C867CAF1D6590E700A1F676 /* Assets.xcassets in Resources */,
 				4C867CF51D65BD8C00A1F676 /* lighting2_0.vsh in Resources */,
+				4C82FC8E1D6C178900C7F243 /* left.jpg in Resources */,
+				4C82FC8D1D6C178900C7F243 /* bottom.jpg in Resources */,
+				4C82FC861D6BFC1D00C7F243 /* lighting6_0.vsh in Resources */,
 				4C867CAD1D6590E700A1F676 /* Main.storyboard in Resources */,
 				4C867CDE1D6592C700A1F676 /* Vertex3_0.vsh in Resources */,
 				4C867CF41D65BD8C00A1F676 /* lighting2_0.fsh in Resources */,
 				4C867CE91D659DB700A1F676 /* lamp.fsh in Resources */,
+				4C82FC921D6C178900C7F243 /* front.jpg in Resources */,
 				4C6DD8FA1D6AA68E001E6F8D /* lighting4_0.vsh in Resources */,
+				4C82FC901D6C178900C7F243 /* top.jpg in Resources */,
 				4C867CE51D65986900A1F676 /* lighting.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,9 +480,11 @@
 			files = (
 				4C867CAA1D6590E700A1F676 /* ViewController.m in Sources */,
 				4C867CF11D65BCDD00A1F676 /* KBOpenGLView2_0.m in Sources */,
+				4C82FC821D6BF7DC00C7F243 /* KBOpenGLView6_0.m in Sources */,
 				4C867CED1D65A94700A1F676 /* KBOpenGLView1_0.m in Sources */,
 				4C00106E1D66EBF300A58505 /* KBOpenGLView3_0.m in Sources */,
 				4C6DD8F81D6AA66C001E6F8D /* KBOpenGLView4_0.m in Sources */,
+				4C82FC781D6BE62100C7F243 /* KBOpenGLView5_0.m in Sources */,
 				4C867CDA1D6592B700A1F676 /* GLProgram.m in Sources */,
 				4C867CA71D6590E700A1F676 /* AppDelegate.m in Sources */,
 				4C867CE11D65932B00A1F676 /* KBOpenglView.m in Sources */,
