@@ -47,6 +47,9 @@
 		4C867CF11D65BCDD00A1F676 /* KBOpenGLView2_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C867CF01D65BCDD00A1F676 /* KBOpenGLView2_0.m */; };
 		4C867CF41D65BD8C00A1F676 /* lighting2_0.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C867CF21D65BD8C00A1F676 /* lighting2_0.fsh */; };
 		4C867CF51D65BD8C00A1F676 /* lighting2_0.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C867CF31D65BD8C00A1F676 /* lighting2_0.vsh */; };
+		8D2A80001D880B7100F7ED03 /* KBOpenGLView7_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A7FFF1D880B7100F7ED03 /* KBOpenGLView7_0.m */; };
+		8D2A80021D880C8500F7ED03 /* lighting7_0.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A80011D880C8500F7ED03 /* lighting7_0.vsh */; };
+		8D2A80041D880CA900F7ED03 /* lighting7_0.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A80031D880CA900F7ED03 /* lighting7_0.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +130,10 @@
 		4C867CF01D65BCDD00A1F676 /* KBOpenGLView2_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOpenGLView2_0.m; sourceTree = "<group>"; };
 		4C867CF21D65BD8C00A1F676 /* lighting2_0.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting2_0.fsh; sourceTree = "<group>"; };
 		4C867CF31D65BD8C00A1F676 /* lighting2_0.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting2_0.vsh; sourceTree = "<group>"; };
+		8D2A7FFE1D880B7100F7ED03 /* KBOpenGLView7_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOpenGLView7_0.h; sourceTree = "<group>"; };
+		8D2A7FFF1D880B7100F7ED03 /* KBOpenGLView7_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOpenGLView7_0.m; sourceTree = "<group>"; };
+		8D2A80011D880C8500F7ED03 /* lighting7_0.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = lighting7_0.vsh; sourceTree = "<group>"; };
+		8D2A80031D880CA900F7ED03 /* lighting7_0.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = lighting7_0.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +234,7 @@
 				4C867CA61D6590E700A1F676 /* AppDelegate.m */,
 				4C867CA81D6590E700A1F676 /* ViewController.h */,
 				4C867CA91D6590E700A1F676 /* ViewController.m */,
+				8D2A7FFD1D880B0600F7ED03 /* location */,
 				4C82FC7F1D6BF79E00C7F243 /* skybox_01 */,
 				4C6DD8FF1D6B0411001E6F8D /* model_01 */,
 				4C6DD8F51D6AA54E001E6F8D /* transformations_01 */,
@@ -322,6 +330,17 @@
 				4C6DD9021D6B0AA3001E6F8D /* banana.jpg */,
 			);
 			path = light_02;
+			sourceTree = "<group>";
+		};
+		8D2A7FFD1D880B0600F7ED03 /* location */ = {
+			isa = PBXGroup;
+			children = (
+				8D2A7FFE1D880B7100F7ED03 /* KBOpenGLView7_0.h */,
+				8D2A7FFF1D880B7100F7ED03 /* KBOpenGLView7_0.m */,
+				8D2A80011D880C8500F7ED03 /* lighting7_0.vsh */,
+				8D2A80031D880CA900F7ED03 /* lighting7_0.fsh */,
+			);
+			path = location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +448,7 @@
 			files = (
 				4C867CE31D6597FF00A1F676 /* lighting.vsh in Resources */,
 				4C6DD8FE1D6AACCC001E6F8D /* 1234.jpg in Resources */,
+				8D2A80021D880C8500F7ED03 /* lighting7_0.vsh in Resources */,
 				4C82FC7A1D6BE64800C7F243 /* lighting5_0.vsh in Resources */,
 				4C0010701D66EC1B00A58505 /* lighting3_0.fsh in Resources */,
 				4C82FC911D6C178900C7F243 /* back.jpg in Resources */,
@@ -451,6 +471,7 @@
 				4C867CF41D65BD8C00A1F676 /* lighting2_0.fsh in Resources */,
 				4C867CE91D659DB700A1F676 /* lamp.fsh in Resources */,
 				4C82FC921D6C178900C7F243 /* front.jpg in Resources */,
+				8D2A80041D880CA900F7ED03 /* lighting7_0.fsh in Resources */,
 				4C6DD8FA1D6AA68E001E6F8D /* lighting4_0.vsh in Resources */,
 				4C82FC901D6C178900C7F243 /* top.jpg in Resources */,
 				4C867CE51D65986900A1F676 /* lighting.fsh in Resources */,
@@ -485,6 +506,7 @@
 				4C00106E1D66EBF300A58505 /* KBOpenGLView3_0.m in Sources */,
 				4C6DD8F81D6AA66C001E6F8D /* KBOpenGLView4_0.m in Sources */,
 				4C82FC781D6BE62100C7F243 /* KBOpenGLView5_0.m in Sources */,
+				8D2A80001D880B7100F7ED03 /* KBOpenGLView7_0.m in Sources */,
 				4C867CDA1D6592B700A1F676 /* GLProgram.m in Sources */,
 				4C867CA71D6590E700A1F676 /* AppDelegate.m in Sources */,
 				4C867CE11D65932B00A1F676 /* KBOpenglView.m in Sources */,

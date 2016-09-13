@@ -8,7 +8,8 @@
 
 #import "ViewController.h"
 //#import "KBOpenglView.h"
-#import "KBOpenGLView6_0.h"
+//#import "KBOpenGLView6_0.h"
+#import "KBOpenGLView7_0.h"
 //#import "KBOpenGLView4_0.h"
 
 @interface ViewController (){
@@ -32,7 +33,7 @@
     [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     displayLink.paused = YES;
     displayLink.frameInterval = 2;
-    glView = [[KBOpenGLView6_0 alloc] initWithFrame:CGRectZero];
+    glView = [[KBOpenGLView7_0 alloc] initWithFrame:CGRectZero];
     [self.view addSubview:glView];
     
     [self.view bringSubviewToFront:self.leftView];
