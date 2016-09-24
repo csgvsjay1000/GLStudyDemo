@@ -50,6 +50,8 @@
 		8D2A80001D880B7100F7ED03 /* KBOpenGLView7_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A7FFF1D880B7100F7ED03 /* KBOpenGLView7_0.m */; };
 		8D2A80021D880C8500F7ED03 /* lighting7_0.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A80011D880C8500F7ED03 /* lighting7_0.vsh */; };
 		8D2A80041D880CA900F7ED03 /* lighting7_0.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A80031D880CA900F7ED03 /* lighting7_0.fsh */; };
+		8DF9A2391D9610C80052248C /* KBOpenGLView8_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF9A2381D9610C80052248C /* KBOpenGLView8_0.m */; };
+		8DF9A23B1D9617A60052248C /* sztest.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF9A23A1D9617A60052248C /* sztest.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +136,9 @@
 		8D2A7FFF1D880B7100F7ED03 /* KBOpenGLView7_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOpenGLView7_0.m; sourceTree = "<group>"; };
 		8D2A80011D880C8500F7ED03 /* lighting7_0.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = lighting7_0.vsh; sourceTree = "<group>"; };
 		8D2A80031D880CA900F7ED03 /* lighting7_0.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = lighting7_0.fsh; sourceTree = "<group>"; };
+		8DF9A2371D9610C80052248C /* KBOpenGLView8_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOpenGLView8_0.h; sourceTree = "<group>"; };
+		8DF9A2381D9610C80052248C /* KBOpenGLView8_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOpenGLView8_0.m; sourceTree = "<group>"; };
+		8DF9A23A1D9617A60052248C /* sztest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sztest.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +239,7 @@
 				4C867CA61D6590E700A1F676 /* AppDelegate.m */,
 				4C867CA81D6590E700A1F676 /* ViewController.h */,
 				4C867CA91D6590E700A1F676 /* ViewController.m */,
+				8DF9A2361D96100F0052248C /* camera */,
 				8D2A7FFD1D880B0600F7ED03 /* location */,
 				4C82FC7F1D6BF79E00C7F243 /* skybox_01 */,
 				4C6DD8FF1D6B0411001E6F8D /* model_01 */,
@@ -341,6 +347,16 @@
 				8D2A80031D880CA900F7ED03 /* lighting7_0.fsh */,
 			);
 			path = location;
+			sourceTree = "<group>";
+		};
+		8DF9A2361D96100F0052248C /* camera */ = {
+			isa = PBXGroup;
+			children = (
+				8DF9A2371D9610C80052248C /* KBOpenGLView8_0.h */,
+				8DF9A2381D9610C80052248C /* KBOpenGLView8_0.m */,
+				8DF9A23A1D9617A60052248C /* sztest.png */,
+			);
+			path = camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,6 +482,7 @@
 				4C82FC8E1D6C178900C7F243 /* left.jpg in Resources */,
 				4C82FC8D1D6C178900C7F243 /* bottom.jpg in Resources */,
 				4C82FC861D6BFC1D00C7F243 /* lighting6_0.vsh in Resources */,
+				8DF9A23B1D9617A60052248C /* sztest.png in Resources */,
 				4C867CAD1D6590E700A1F676 /* Main.storyboard in Resources */,
 				4C867CDE1D6592C700A1F676 /* Vertex3_0.vsh in Resources */,
 				4C867CF41D65BD8C00A1F676 /* lighting2_0.fsh in Resources */,
@@ -506,6 +523,7 @@
 				4C00106E1D66EBF300A58505 /* KBOpenGLView3_0.m in Sources */,
 				4C6DD8F81D6AA66C001E6F8D /* KBOpenGLView4_0.m in Sources */,
 				4C82FC781D6BE62100C7F243 /* KBOpenGLView5_0.m in Sources */,
+				8DF9A2391D9610C80052248C /* KBOpenGLView8_0.m in Sources */,
 				8D2A80001D880B7100F7ED03 /* KBOpenGLView7_0.m in Sources */,
 				4C867CDA1D6592B700A1F676 /* GLProgram.m in Sources */,
 				4C867CA71D6590E700A1F676 /* AppDelegate.m in Sources */,
