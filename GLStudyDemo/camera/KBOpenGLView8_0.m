@@ -159,10 +159,6 @@
     model = GLKMatrix4RotateY(model, GLKMathDegreesToRadians(self.degress));
 
     
-//    model = GLKMatrix4RotateX(model, GLKMathDegreesToRadians(self.verticalDegress));
-//    model = GLKMatrix4RotateY(model, GLKMathDegreesToRadians(self.degress));
-
-    
     GLKMatrix4 viewM = GLKMatrix4Identity;
     
 //    
@@ -196,10 +192,12 @@
 }
 
 -(void)upActions{
-    
+    _vertical = _vertical+0.1;
+    cameraPos = GLKVector3Make(0, _vertical, 0);
 }
 -(void)downActions{
-    
+    _vertical = _vertical-0.1;
+    cameraPos = GLKVector3Make(0, _vertical, 0);
 }
 -(void)leftActions{
     

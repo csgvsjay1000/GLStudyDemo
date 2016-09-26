@@ -16,6 +16,9 @@
 @property (assign, nonatomic) CGFloat degress;
 @property (assign, nonatomic) CGFloat verticalDegress;
 
+@property (assign, nonatomic) CGFloat vertical;
+
+
 //陀螺仪
 @property(nonatomic,strong) CMAttitude *referenceAttitude;
 @property(nonatomic,strong) CMMotionManager *motionManager;
