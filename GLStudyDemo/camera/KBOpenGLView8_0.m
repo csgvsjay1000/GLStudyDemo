@@ -154,9 +154,28 @@
     
     CMDeviceMotion *deviceMotion = self.motionManager.deviceMotion;
 
+    //2. Gravity 获取手机的重力值在各个方向上的分量，根据这个就可以获得手机的空间位置，倾斜角度等
+    double gravityX = deviceMotion.gravity.x;
+    double gravityY = deviceMotion.gravity.y;
+    double gravityZ = -deviceMotion.gravity.z;
     
-    model = GLKMatrix4RotateX(model, GLKMathDegreesToRadians(self.verticalDegress));
-    model = GLKMatrix4RotateY(model, GLKMathDegreesToRadians(self.degress));
+    //获取手机的倾斜角度：
+//    double zTheta = atan2(gravityZ,sqrtf(gravityX*gravityX+gravityY*gravityY))/M_PI*180.0;
+    double zTheta = atan2(gravityZ,sqrtf(gravityX*gravityX+gravityY*gravityY));
+    
+    double xyTheta = atan2(gravityX,gravityY)/M_PI*180.0;
+    
+    printf("zTheta :%f, xyTheta %f\n",zTheta,xyTheta);
+    //zTheta是手机与水平面的夹角， xyTheta是手机绕自身旋转的角度
+    CMAttitude *attri = deviceMotion.attitude;
+    
+    model = GLKMatrix4RotateX(model, zTheta);
+
+    model = GLKMatrix4RotateY(model, attri.roll+attri.yaw);
+
+    
+    //model = GLKMatrix4RotateX(model, GLKMathDegreesToRadians(self.verticalDegress));
+    //model = GLKMatrix4RotateY(model, GLKMathDegreesToRadians(self.degress));
 
     
     GLKMatrix4 viewM = GLKMatrix4Identity;
